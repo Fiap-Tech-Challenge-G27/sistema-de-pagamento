@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sistema-de-pagamento
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sistema-de-pagamento
+  template:
+    metadata:
+      labels:
+        app: sistema-de-pagamento
+    spec:
+      containers: 
+        - name: sistema-de-pagamento
+          image: {{ecr-registry}}/sistema-de-pagamento:{{VERSION}}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          resources:
+            limits:
+              memory: "124Mi"
+              cpu: "0.25"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          envFrom:
+            - configMapRef:
+                name: sistema-de-pagamento-configmap
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sistema-de-pagamento-configmap
+data:
+  RESPONSE_URL: "http://backend:3000/orders/webhooks/payment-confirmation"
+  PORT: "3000"
+  WAIT_SECONDS: "10"
