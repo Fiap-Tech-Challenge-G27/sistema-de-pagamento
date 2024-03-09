@@ -51,5 +51,5 @@ jobs:
 
       - name: Deploy to AWS EKS
         run: |
-          kubectl apply -f kubernetes/payment-mock/payment-mock-deployment.yaml
-          kubectl apply -f kubernetes/payment-mock/payment-mock-service.yml
+          kubectl apply -f kubernetes/sistema-de-pagamento/sistema-de-pagamento-deployment.yaml
+          kubectl apply -f kubernetes/sistema-de-pagamento/sistema-de-pagamento-service.yml

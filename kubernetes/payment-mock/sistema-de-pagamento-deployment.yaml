@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: payment-mock
+  name: sistema-de-pagamento
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: payment-mock
+      app: sistema-de-pagamento
   template:
     metadata:
       labels:
-        app: payment-mock
+        app: sistema-de-pagamento
     spec:
       containers: 
-        - name: payment-mock
-          image: payment-mock
+        - name: sistema-de-pagamento
+          image: {{ecr-registry}}/sistema-de-pagamento:{{VERSION}}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
@@ -30,14 +30,14 @@ spec:
             periodSeconds: 10
           envFrom:
             - configMapRef:
-                name: payment-mock-configmap
+                name: sistema-de-pagamento-configmap
       restartPolicy: Always
 
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: payment-mock-configmap
+  name: sistema-de-pagamento-configmap
 data:
   RESPONSE_URL: "http://backend:3000/orders/webhooks/payment-confirmation"
   PORT: "3000"
