@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: payment-mock
+  name: sistema-de-pagamento
 spec:
   selector:
-    app: payment-mock
+    app: sistema-de-pagamento
   type: NodePort
   ports:
   - port: 3000

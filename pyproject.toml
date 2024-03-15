@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "payment-mock"
+name = "sistema-de-pagamento"
 version = "0.1.0"
 description = "0.0.1"
 authors = ["Matheus de Mello Vieira <mellomatheus67@gmail.com>"]
