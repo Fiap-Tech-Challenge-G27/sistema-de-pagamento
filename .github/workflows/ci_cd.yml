@@ -38,17 +38,17 @@ jobs:
 
       - name: Build and Push Docker image
         run: |
-          docker buildx build --platform linux/amd64 -t $ECR_REGISTRY/$ECR_REPOSITORY:$VERSION .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$VERSION
+          docker buildx build --platform linux/amd64 -t $ECR_REGISTRY/$ECR_REPOSITORY:$GITHUB_RUN_NUMBER .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$GITHUB_RUN_NUMBER
           
-      - name: Update kube config
-        run: aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_REGION
+      # - name: Update kube config
+      #   run: aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_REGION
         
-      - name: Update deployment.yaml
-        run: |
-          sed -i "s/{{VERSION}}/$VERSION/g" kubernetes/sistema-de-pagamento/sistema-de-pagamento-deployment.yaml
+      # - name: Update deployment.yaml
+      #   run: |
+      #     sed -i "s/{{VERSION}}/$VERSION/g" kubernetes/sistema-de-pagamento/sistema-de-pagamento-deployment.yaml
           
-      - name: Deploy to AWS EKS
-        run: |
-          kubectl apply -f kubernetes/sistema-de-pagamento/sistema-de-pagamento-deployment.yaml
-          kubectl apply -f kubernetes/sistema-de-pagamento/sistema-de-pagamento-service.yml
+      # - name: Deploy to AWS EKS
+      #   run: |
+      #     kubectl apply -f kubernetes/sistema-de-pagamento/sistema-de-pagamento-deployment.yaml
+      #     kubectl apply -f kubernetes/sistema-de-pagamento/sistema-de-pagamento-service.yml
