@@ -14,7 +14,7 @@ spec:
     spec:
       containers: 
         - name: sistema-de-pagamento
-          image: {{ecr-registry}}/sistema-de-pagamento:{{VERSION}}
+          image: 851725345801.dkr.ecr.us-east-1.amazonaws.com/sistema-de-pagamento:{{VERSION}}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
@@ -39,6 +39,6 @@ kind: ConfigMap
 metadata:
   name: sistema-de-pagamento-configmap
 data:
-  RESPONSE_URL: "http://backend:3000/orders/webhooks/payment-confirmation"
+  RESPONSE_URL: "http://sistema-de-lanchonete:3000/orders/webhooks/payment-confirmation"
   PORT: "3000"
   WAIT_SECONDS: "10"
