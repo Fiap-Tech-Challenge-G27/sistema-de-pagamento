@@ -48,7 +48,7 @@ jobs:
         
       - name: Update deployment.yaml
         run: |
-          sed -i "s/{{VERSION}}/$VERSION/g" kubernetes/sistema-de-pagamento/sistema-de-pagamento-deployment.yaml
+          sed -i "s/{{VERSION}}/$VERSION/g" kubernetes/sistema-de-pagamento-deployment.yaml
           
       - name: Deploy to AWS EKS
         run: |
