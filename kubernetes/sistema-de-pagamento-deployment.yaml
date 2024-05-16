@@ -39,6 +39,6 @@ kind: ConfigMap
 metadata:
   name: sistema-de-pagamento-configmap
 data:
-  RESPONSE_URL: "http://backend:3000/orders/webhooks/payment-confirmation"
+  RESPONSE_URL: "http://ms-producao:3000/payment/webhooks/payment-confirmation"
   PORT: "3000"
   WAIT_SECONDS: "10"
