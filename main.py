@@ -17,7 +17,7 @@ def get_status():
         return 'approved'
     return 'canceled'
 
-@app.put("/toggle")
+@app.put("/payment/toggle")
 def toggle_result():
     global will_approve
 
