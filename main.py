@@ -4,7 +4,7 @@ import requests
 import os
 import time
 
-RESPOSE_URL = os.environ["RESPONSE_URL"]
+RESPONSE_URL = os.environ["RESPONSE_URL"]
 WAIT_SECONDS = int(os.environ["WAIT_SECONDS"])
 PORT = int(os.environ["PORT"])
 
@@ -30,7 +30,7 @@ def confirm_payment(identifier):
     time.sleep(WAIT_SECONDS)
     
     print("Sending", flush=True)
-    response = requests.post(RESPOSE_URL, json={"identifier": identifier, "status": get_status()}, timeout=5)
+    response = requests.post(RESPONSE_URL, json={"identifier": identifier, "status": get_status()}, timeout=5)
     print("confirm", response, flush=True)
     print("status", get_status(), flush=True)
 
